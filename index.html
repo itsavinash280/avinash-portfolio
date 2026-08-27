@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avinash Photo Journal</title>
+    <meta name="description"
+        content="Avinash's photography sketchbook: events, concerts, portraits, and brand frames from Lucknow.">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="script.js"></script>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+
+    <nav class="navbar" id="navbar">
+        <a href="#home" class="logo">Avinash <span>✎</span></a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#portfolio">Frames</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Book a shoot ↓</a>
+        <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+
+    <main class="sketchbook-main">
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="journal-cover reveal">
+                    <div class="cover-border">
+                        <div class="cover-topline">
+                            <span>A Photo Journal</span>
+                            <span>·</span>
+                            <span>Issue No. 01</span>
+                            <span>·</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="cover-body">
+                            <h1>Avinash <span>&amp;</span> frames.</h1>
+                            <p class="cover-subtitle">Events, faces, stage light, and small honest moments.</p>
+                        </div>
+                        <div class="cover-footer">
+                            <span>Lucknow · India</span>
+                            <span>iPhone 15 · Photo stories</span>
+                            <a href="#about">Press open →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="cover-actions reveal" style="transition-delay: 0.15s;">
+                    <a href="#about" class="tape-link">open the book ↗</a>
+                    <span class="pen-mark">✎</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <div class="page-rule reveal">
+                    <span>§ 01 · Pages 2-3</span>
+                    <span>behind the camera</span>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text reveal">
+                        <h2 class="heading-md">About<span>.</span></h2>
+                        <p class="intro-line">Hi, I'm <span class="ink-underline">Avinash</span>.</p>
+                        <p>I document <span class="text-highlight">tech communities, corporate events, portraits, and
+                                brand stories</span> across Lucknow. My focus is on natural, engaging visuals that
+                            capture genuine energy and connection without feeling staged.</p>
+                        <div class="pill-row">
+                            <span>Available for events</span>
+                            <span>iPhone 15</span>
+                            <span>Lucknow</span>
+                        </div>
+                    </div>
+                    <aside class="about-sidebar reveal" style="transition-delay: 0.1s;">
+                        <div class="sidebar-item">
+                            <h4>Based in</h4>
+                            <p>Lucknow, India</p>
+                        </div>
+                        <div class="sidebar-item">
+                            <h4>Focus</h4>
+                            <p>Events · Meetups · Workshops · Hackathons</p>
+                        </div>
+                        <div class="sidebar-item">
+                            <h4>Reach</h4>
+                            <p>studentavinash10@gmail.com</p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="section">
+            <div class="container">
+                <div class="page-rule reveal">
+                    <span>§ 02 · Pages 4-5</span>
+                    <span>coverage notes</span>
+                </div>
+                <h2 class="heading-md reveal">Work <em>style.</em></h2>
+                <div class="work-grid">
+                    <article class="work-paper reveal">
+                        <h3>Community events</h3>
+                        <p>Speakers, people, energy, and the candid moments that make every event memorable.</p>
+                    </article>
+                    <article class="work-paper reveal" style="transition-delay: 0.1s;">
+                        <h3>Brand stories</h3>
+                        <p>Products, people, campaigns, and details captured to make your brand feel authentic.</p>
+                    </article>
+                    <article class="work-paper reveal" style="transition-delay: 0.2s;">
+                        <h3>Portraits</h3>
+                        <p>Expressions, personality, and natural moments turned into timeless frames.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section portfolio-section">
+            <div class="container">
+                <div class="page-rule reveal">
+                    <span>§ 03 · Pages 6-7</span>
+                    <span>click a frame to open</span>
+                </div>
+                <h2 class="heading-md reveal">Selected <em>frames.</em></h2>
+                <div class="photo-stories" id="gallery">
+                    <a href="events.html" class="story-card story-large reveal">
+                        <img src="assets/photos/events/event_01.jpg" alt="College event photography"
+                            class="story-img no-lightbox">
+                        <div class="story-meta">
+                            <span>#01 · LUCKNOW AI X GDG LUCKNOW</span>
+                            <h3>BUILD WITH AI LUCKNOW EDITION</h3>
+                        </div>
+                    </a>
+                    <a href="portraits.html" class="story-card reveal" style="transition-delay: 0.1s;">
+                        <img src="assets/portrait_1.jpg" alt="Brand photography" class="story-img no-lightbox">
+                        <div class="story-meta">
+                            <span>#02 · Brands</span>
+                            <h3>Brand Gallery</h3>
+                        </div>
+                    </a>
+
+                    <a href="gdg-meetup.html" class="story-card reveal" style="transition-delay: 0.3s;">
+                        <img src="assets/photos/gdg_meetup/gdg_meetup_06.jpeg"
+                            alt="Build with AI – GDG Lucknow Community Run & AI Builders Meetup"
+                            class="story-img no-lightbox">
+                        <div class="story-meta">
+                            <span>#03 · GDG Lucknow</span>
+                            <h3>Run & AI Builders Meetup</h3>
+                        </div>
+                    </a>
+                    <a href="hackers-meetup.html" class="story-card reveal" style="transition-delay: 0.4s;">
+                        <img src="assets/photos/hackers_meetup/hackers_meetup_09.jpg"
+                            alt="The Hackers Meetup with Cyber Intelligence Community Lucknow"
+                            class="story-img no-lightbox">
+                        <div class="story-meta">
+                            <span>#04 · Cyber Intelligence Community Lucknow</span>
+                            <h3>The Hackers Meetup</h3>
+                        </div>
+                    </a>
+                    <a href="cloud-native-meetup.html" class="story-card reveal" style="transition-delay: 0.5s;">
+                        <img src="assets/photos/cloud_native/cncg_14.jpg"
+                            alt="Cloud Native Community Group Lucknow"
+                            class="story-img no-lightbox">
+                        <div class="story-meta">
+                            <span>#05 · CNCF Lucknow</span>
+                            <h3>Cloud Native Community Group</h3>
+                        </div>
+                    </a>
+                    <a href="nerds-hack-days.html" class="story-card reveal" style="transition-delay: 0.6s;">
+                        <img src="assets/photos/hackdays/hackdays_01.jpg"
+                            alt="Nerds Hack Days Community Hackathon & Builders"
+                            class="story-img no-lightbox">
+                        <div class="story-meta">
+                            <span>#06 · Community Hackathon</span>
+                            <h3>Nerds Hack Days</h3>
+                        </div>
+                    </a>
+                    <a href="vapt-cybersecurity-workshop.html" class="story-card reveal" style="transition-delay: 0.7s;">
+                        <img src="assets/photos/vapt_workshop/vapt_02.jpg"
+                            alt="VAPT &amp; Cyber Security Workshop with Cyber Intelligence Community Lucknow"
+                            class="story-img no-lightbox">
+                        <div class="story-meta">
+                            <span>#07 · Cyber Intelligence Community Lucknow</span>
+                            <h3>VAPT &amp; Cyber Security Workshop</h3>
+                        </div>
+                    </a>
+                    <a href="android-lucknow.html" class="story-card reveal" style="transition-delay: 0.8s;">
+                        <img src="assets/photos/android_lucknow/android_04.jpg"
+                            alt="Android Nova 2.0 by Android Lucknow Community"
+                            class="story-img no-lightbox">
+                        <div class="story-meta">
+                            <span>#08 · Android Lucknow</span>
+                            <h3>Android Nova 2.0</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee-band" aria-hidden="true">
+            <div class="marquee-track">
+                <span>EVENTS</span>
+                <span class="marquee-dot">✦</span>
+                <span>BRAND STORIES</span>
+                <span class="marquee-dot">✦</span>
+                <span>CONCERTS</span>
+                <span class="marquee-dot">✦</span>
+                <span>PORTRAITS</span>
+                <span class="marquee-dot">✦</span>
+                <span>CANDIDS</span>
+                <span class="marquee-dot">✦</span>
+                <span>COMMUNITY MEETS</span>
+                <span class="marquee-dot">✦</span>
+                <span>COMMERCIAL</span>
+                <span class="marquee-dot">✦</span>
+                <span>LIFESTYLE</span>
+                <span class="marquee-dot">✦</span>
+            </div>
+            <div class="marquee-track" aria-hidden="true">
+                <span>EVENTS</span>
+                <span class="marquee-dot">✦</span>
+                <span>BRAND STORIES</span>
+                <span class="marquee-dot">✦</span>
+                <span>CONCERTS</span>
+                <span class="marquee-dot">✦</span>
+                <span>PORTRAITS</span>
+                <span class="marquee-dot">✦</span>
+                <span>CANDIDS</span>
+                <span class="marquee-dot">✦</span>
+                <span>COMMUNITY MEETS</span>
+                <span class="marquee-dot">✦</span>
+                <span>COMMERCIAL</span>
+                <span class="marquee-dot">✦</span>
+                <span>LIFESTYLE</span>
+                <span class="marquee-dot">✦</span>
+            </div>
+        </div>
+
+        <section id="contact" class="cta-section">
+            <div class="container reveal">
+                <div class="page-rule">
+                    <span>§ 04 · Last page</span>
+                    <span>say hello</span>
+                </div>
+                <div class="contact-grid">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=studentavinash10@gmail.com" target="_blank"
+                        rel="noopener noreferrer">
+                        <span>Email</span>
+                        <strong>studentavinash10@gmail.com</strong>
+                    </a>
+                    <a href="https://www.instagram.com/aviii.heic/" target="_blank" rel="noopener noreferrer">
+                        <span>Instagram</span>
+                        <strong>instagram.com/aviii.heic</strong>
+                    </a>
+                    <a href="https://www.linkedin.com/in/avinashcreates/" target="_blank" rel="noopener noreferrer">
+                        <span>LinkedIn</span>
+                        <strong>linkedin.com/in/avinashcreates</strong>
+                    </a>
+                    <div>
+                        <span>Based in</span>
+                        <strong>Lucknow, India</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">Avinash Photography</div>
+            <div>&copy; 2026 — Capturing moments, telling stories.</div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/aviii.heic/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.linkedin.com/in/avinashcreates/" target="_blank"
+                    rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div class="handwritten">Thanks for looking.</div>
+        </div>
+    </footer>
+
+    <div class="desk-chip desk-chip-left" aria-hidden="true">
+        <span><i class="red-dot"></i> Lucknow</span>
+        <span>·</span>
+        <span id="desk-time">--:-- IST</span>
+        <span>·</span>
+        <span><i class="green-dot"></i> Available</span>
+    </div>
+    <div class="desk-chip desk-chip-right" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="scroll-track"><span id="scroll-bar"></span><i id="scroll-thumb"></i></span>
+        <span id="scroll-percent">0%</span>
+    </div>
+</body>
+
+</html>
