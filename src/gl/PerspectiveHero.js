@@ -45,7 +45,8 @@ export class PerspectiveHero {
   init() {
     this.canvas = document.createElement('canvas')
     this.canvas.className = 'perspective-hero-canvas'
-    this.canvas.style.touchAction = 'none'
+    this.canvas.style.touchAction = 'pan-y'
+    this.canvas.style.pointerEvents = 'none'
     this.container.appendChild(this.canvas)
 
     const gl =
@@ -333,117 +334,142 @@ export class PerspectiveHero {
   bindEvents() {
     let lastToggleTime = 0
 
-    // Wheel listener: Single gesture flips state on scroll
+    // Wheel listener: DOES NOT preventDefault, allowing natural, buttery-smooth page scrolling
     const handleWheel = (e) => {
-      // Only capture wheel when near top hero section
-      if (window.scrollY > 150) return
-
+      if (window.scrollY > 80) return
       const now = performance.now()
-      if (now - lastToggleTime < 450) return
+      if (now - lastToggleTime < 500) return
 
-      if (e.deltaY > 15) {
-        if (!this.state.isState1) {
-          this.toggleState(true)
-          lastToggleTime = now
-          e.preventDefault()
-        }
-      } else if (e.deltaY < -15) {
-        if (this.state.isState1) {
-          this.toggleState(false)
-          lastToggleTime = now
-          e.preventDefault()
-        }
+      if (e.deltaY > 60 && !this.state.isState1) {
+        this.toggleState(true)
+        lastToggleTime = now
+      } else if (e.deltaY < -60 && this.state.isState1) {
+        this.toggleState(false)
+        lastToggleTime = now
       }
     }
 
-    // Touch interaction
+    // Touch interaction: Fully passive and non-blocking so native page scrolling is never interrupted
+    let touchStartX = 0
     let touchStartY = 0
     let isTouching = false
+    let touchMoved = false
 
     const handleTouchStart = (e) => {
       if (e.touches && e.touches.length > 0) {
+        touchStartX = e.touches[0].clientX
         touchStartY = e.touches[0].clientY
         isTouching = true
+        touchMoved = false
 
         const rect = this.container.getBoundingClientRect()
         const x = ((e.touches[0].clientX - rect.left) / rect.width) * 2 - 1
         const y = -(((e.touches[0].clientY - rect.top) / rect.height) * 2 - 1)
 
-        const screenAspect = rect.width / Math.max(rect.height, 1)
-        const isMobile = screenAspect < 1.2
-        const boxHalfW = isMobile ? 0.86 : 0.44
-        const boxHalfH = isMobile ? 0.40 : 0.42
+        const boxHalfW = 0.75
+        const boxHalfH = 0.38
         const inBox = Math.abs(x) <= boxHalfW && Math.abs(y) <= boxHalfH
 
         if (inBox) {
           this.state.isHovered = true
-          this.state.targetHover = 1.0
+          this.state.targetHover = 0.85
           this.state.targetMouseX = Math.max(-1, Math.min(1, x / boxHalfW))
           this.state.targetMouseY = Math.max(-1, Math.min(1, y / boxHalfH))
-        } else {
-          this.state.isHovered = false
-          this.state.targetHover = 0.0
-          this.state.targetMouseX = 0
-          this.state.targetMouseY = 0
         }
       }
     }
 
     const handleTouchMove = (e) => {
       if (!isTouching || !e.touches || e.touches.length === 0) return
+      const dx = Math.abs(e.touches[0].clientX - touchStartX)
+      const dy = Math.abs(e.touches[0].clientY - touchStartY)
+
+      if (dx > 10 || dy > 10) {
+        touchMoved = true // User is actively scrolling the page
+      }
+
       const rect = this.container.getBoundingClientRect()
       const x = ((e.touches[0].clientX - rect.left) / rect.width) * 2 - 1
       const y = -(((e.touches[0].clientY - rect.top) / rect.height) * 2 - 1)
 
-      const screenAspect = rect.width / Math.max(rect.height, 1)
-      const isMobile = screenAspect < 1.2
-      const boxHalfW = isMobile ? 0.86 : 0.44
-      const boxHalfH = isMobile ? 0.40 : 0.42
+      const boxHalfW = 0.80
+      const boxHalfH = 0.40
       const inBox = Math.abs(x) <= boxHalfW && Math.abs(y) <= boxHalfH
 
       if (inBox) {
         this.state.isHovered = true
-        this.state.targetHover = 1.0
+        this.state.targetHover = 0.85
         this.state.targetMouseX = Math.max(-1, Math.min(1, x / boxHalfW))
         this.state.targetMouseY = Math.max(-1, Math.min(1, y / boxHalfH))
       } else {
-        this.state.isHovered = false
         this.state.targetHover = 0.0
-        this.state.targetMouseX = 0
-        this.state.targetMouseY = 0
       }
     }
 
     const handleTouchEnd = (e) => {
       if (!isTouching) return
       isTouching = false
-      const deltaY = touchStartY - (e.changedTouches[0]?.clientY || touchStartY)
-      const now = performance.now()
 
-      if (now - lastToggleTime >= 450) {
-        if (deltaY > 35 && !this.state.isState1) {
-          this.toggleState(true)
-          lastToggleTime = now
-          return
-        } else if (deltaY < -35 && this.state.isState1) {
-          this.toggleState(false)
-          lastToggleTime = now
-          return
+      // If user performed a quick tap (without dragging to scroll) inside center box, toggle State!
+      if (!touchMoved) {
+        const rect = this.container.getBoundingClientRect()
+        const changedTouch = e.changedTouches && e.changedTouches[0]
+        if (changedTouch) {
+          const x = ((changedTouch.clientX - rect.left) / rect.width) * 2 - 1
+          const y = -(((changedTouch.clientY - rect.top) / rect.height) * 2 - 1)
+          if (Math.abs(x) <= 0.65 && Math.abs(y) <= 0.35) {
+            this.toggleState(!this.state.isState1)
+          }
         }
       }
 
+      // Smoothly return to resting position
       this.state.targetHover = 0.0
       this.state.targetMouseX = 0
       this.state.targetMouseY = 0
       this.state.isHovered = false
     }
 
-    window.addEventListener('wheel', handleWheel, { passive: false })
+    // Phone Gyroscope / Device Tilt for hands-free 3D holographic perspective on mobile
+    const handleOrientation = (e) => {
+      if (window.scrollY > window.innerHeight * 0.7) return
+      if (isTouching) return // Touch has priority when user is actively interacting
+
+      if (e.gamma !== null && e.beta !== null) {
+        // gamma: left-to-right tilt [-30deg, 30deg]
+        const gx = Math.max(-25, Math.min(25, e.gamma))
+        // beta: front-to-back tilt around normal holding position (~45deg)
+        const by = Math.max(15, Math.min(75, e.beta))
+
+        const normX = gx / 25
+        const normY = (by - 45) / 30
+
+        this.state.targetMouseX = normX
+        this.state.targetMouseY = -normY
+        this.state.targetHover = 0.70
+        this.state.isHovered = true
+      }
+    }
+
+    // When scrolling down, smoothly settle hero warp to flat
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 0.65) {
+        this.state.targetHover = 0.0
+        this.state.isHovered = false
+      }
+    }
+
+    window.addEventListener('wheel', handleWheel, { passive: true })
     window.addEventListener('touchstart', handleTouchStart, { passive: true })
     window.addEventListener('touchmove', handleTouchMove, { passive: true })
     window.addEventListener('touchend', handleTouchEnd, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
-    // Mouse movement inside hero container
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', handleOrientation, { passive: true })
+    }
+
+    // Mouse movement inside hero container (Desktop)
     this.container.addEventListener('mousemove', (e) => {
       const rect = this.container.getBoundingClientRect()
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1

@@ -20,39 +20,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // --- Custom Emoji Cursor ---
-    const cursorEl = document.createElement('div');
-    cursorEl.id = 'emoji-cursor';
-    cursorEl.textContent = '📷';
-    cursorEl.style.cssText = `
-        position: fixed;
-        top: 0; left: 0;
-        width: 32px; height: 32px;
-        font-size: 28px;
-        line-height: 1;
-        pointer-events: none;
-        z-index: 99999;
-        transform: translate(-50%, -50%);
-        transition: transform 0.08s ease-out;
-        user-select: none;
-    `;
-    document.body.appendChild(cursorEl);
-    document.documentElement.style.cursor = 'none';
-    document.body.style.cursor = 'none';
-
-    document.addEventListener('mousemove', (e) => {
-        cursorEl.style.left = e.clientX + 'px';
-        cursorEl.style.top = e.clientY + 'px';
-    });
-
-    document.addEventListener('mousedown', () => {
-        cursorEl.textContent = '📸';
-        cursorEl.style.transform = 'translate(-50%, -50%) scale(1.25)';
-    });
-    document.addEventListener('mouseup', () => {
+    // --- Custom Emoji Cursor (Desktop with fine pointer only) ---
+    if (window.matchMedia('(pointer: fine)').matches) {
+        const cursorEl = document.createElement('div');
+        cursorEl.id = 'emoji-cursor';
         cursorEl.textContent = '📷';
-        cursorEl.style.transform = 'translate(-50%, -50%) scale(1)';
-    });
+        cursorEl.style.cssText = `
+            position: fixed;
+            top: 0; left: 0;
+            width: 32px; height: 32px;
+            font-size: 28px;
+            line-height: 1;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s ease-out;
+            user-select: none;
+        `;
+        document.body.appendChild(cursorEl);
+        document.documentElement.style.cursor = 'none';
+        document.body.style.cursor = 'none';
+
+        document.addEventListener('mousemove', (e) => {
+            cursorEl.style.left = e.clientX + 'px';
+            cursorEl.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursorEl.textContent = '📸';
+            cursorEl.style.transform = 'translate(-50%, -50%) scale(1.25)';
+        });
+        document.addEventListener('mouseup', () => {
+            cursorEl.textContent = '📷';
+            cursorEl.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+    }
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

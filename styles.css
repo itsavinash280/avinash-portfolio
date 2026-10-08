@@ -1466,6 +1466,7 @@ img {
 .perspective-hero-wrapper {
     position: relative;
     width: 100vw;
+    max-width: 100%;
     height: 100vh;
     min-height: 100vh;
     overflow: hidden;
@@ -1473,6 +1474,8 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
     background:
         radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.13) 0 1px, transparent 1.5px) 0 0 / 24px 24px,
         linear-gradient(145deg, #a90524 0%, #740017 100%);
@@ -1493,6 +1496,8 @@ img {
     z-index: 10;
     display: block;
     cursor: default;
+    pointer-events: none;
+    touch-action: pan-y;
 }
 
 .perspective-header {
@@ -1634,10 +1639,28 @@ img {
 }
 
 @media (max-width: 768px) {
+    .perspective-header {
+        padding: 1rem 1.2rem;
+        gap: 0.5rem;
+    }
+
+    .perspective-nav {
+        gap: 0.35rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .perspective-btn {
+        height: 32px;
+        padding: 0 0.85rem;
+        font-size: 0.7rem;
+    }
+
     .perspective-subtitle {
-        top: calc(50% + 90px);
-        font-size: 0.65rem;
+        top: calc(50% + 82px);
+        font-size: 0.62rem;
         letter-spacing: 0.08em;
+        padding: 0 1rem;
     }
 
     .perspective-bottom {
@@ -1645,7 +1668,27 @@ img {
         gap: 0.75rem;
         align-items: center;
         text-align: center;
-        bottom: 1rem;
+        bottom: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .perspective-header {
+        padding: 0.8rem 0.8rem;
+    }
+
+    .perspective-nav {
+        gap: 0.25rem;
+    }
+
+    .perspective-btn {
+        height: 28px;
+        padding: 0 0.65rem;
+    }
+
+    .perspective-subtitle {
+        top: calc(50% + 72px);
+        font-size: 0.58rem;
     }
 }
 

@@ -5,3 +5,4 @@ dist/
 # Original photo dumps are kept locally; curated web assets live in assets/.
 drive-download-20260815T060805Z-1-001/
 Nerds Hack Days_ Lucknow/
+.vercel

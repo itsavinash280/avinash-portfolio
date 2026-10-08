@@ -49,41 +49,41 @@ export const HERO_VERTEX_SHADER = `
     // ============================================================
     // 1. STATE 0: CONCAVE 3D PERSPECTIVE WARP (Avinash & frames.)
     // ============================================================
-    float defHalfW0 = mix(0.28, 0.44, isMobile);
+    float defHalfW0 = mix(0.28, 0.40, isMobile);
     float defHalfH0 = (defHalfW0 * screenAspect) / max(u_textAspect0, 0.5);
     vec2 posFlat0 = vec2(a_grid.x * defHalfW0, a_grid.y * defHalfH0);
 
     float u_curve0 = 0.72 * sinU + 0.28 * (sinU * sinU * sinU);
-    float sideBias0 = 1.0 + mx * sinU * 0.40;
+    float sideBias0 = 1.0 + mx * sinU * 0.35;
     float zNear0 = 1.15;
     float zFar0 = 4.20;
     float zBase0 = zNear0 + (zFar0 - zNear0) * cosSqU;
-    float zMouseShift0 = -mx * sinU * 0.48;
+    float zMouseShift0 = -mx * sinU * 0.45;
     float Z0 = max(0.80, zBase0 + zMouseShift0);
 
     float focal0 = 2.0;
-    float targetSpan0 = 0.94;
+    float targetSpan0 = mix(0.94, 0.82, isMobile);
     float halfWidth3D_0 = (targetSpan0 * zNear0) / focal0;
     float X_base0 = u_curve0 * halfWidth3D_0 * sideBias0;
 
     // Proportionate ribbon height respecting text aspect ratio
     float aspectCompensation0 = clamp(3.0 / max(u_textAspect0, 1.2), 0.75, 1.6);
-    float targetEdgeHalfH0 = mix(0.68, 0.38, isMobile) * aspectCompensation0;
+    float targetEdgeHalfH0 = mix(0.68, 0.36, isMobile) * aspectCompensation0;
     float halfHeight3D_0 = (targetEdgeHalfH0 * zNear0) / (focal0 * screenAspect);
     float pitchTilt0 = (mx * 0.14 - my * 0.12) * sinU;
     float Y_center0 = pitchTilt0;
-    float coneSlant0 = 0.22 * sinU;
+    float coneSlant0 = 0.20 * sinU;
     float X_3D_0 = X_base0 + v * coneSlant0 * (halfHeight3D_0 * screenAspect);
     float Y_3D_0 = Y_center0 + v * halfHeight3D_0;
 
-    float xSpanScale0 = mix(1.0, 1.16, isMobile);
+    float xSpanScale0 = mix(1.0, 1.02, isMobile);
     vec2 posWarp0 = vec2((X_3D_0 * focal0 * xSpanScale0) / Z0, (Y_3D_0 * focal0 * screenAspect) / Z0);
     vec2 posFinal0 = mix(posFlat0, posWarp0, h);
 
     // ============================================================
     // 2. STATE 1: HYPERBOLIC FOLD 3D WARP (PHOTOGRAPHER)
     // ============================================================
-    float defHalfW1 = mix(0.28, 0.44, isMobile);
+    float defHalfW1 = mix(0.28, 0.40, isMobile);
     float defHalfH1 = (defHalfW1 * screenAspect) / max(u_textAspect1, 0.5);
     vec2 posFlat1 = vec2(a_grid.x * defHalfW1, a_grid.y * defHalfH1);
 
@@ -96,16 +96,16 @@ export const HERO_VERTEX_SHADER = `
     float zMouseShift1 = -mx * u * 0.16;
     float Z1 = max(0.85, zBase1 + zMouseShift1);
 
-    float targetSpan1 = 0.93;
+    float targetSpan1 = mix(0.93, 0.82, isMobile);
     float sideBias1 = 1.0 + mx * u * 0.10;
     float fanSlant1 = 0.07 * u;
 
-    float xSpanScale1 = mix(1.0, 1.18, isMobile);
+    float xSpanScale1 = mix(1.0, 1.02, isMobile);
     float x_proj1 = (u * targetSpan1 * sideBias1 + v * fanSlant1) * xSpanScale1;
 
     float yTrough1 = mix(-0.13, -0.05, isMobile);
     float vRise1 = mix(0.32, 0.15, isMobile) * fold;
-    float halfH1 = mix(0.34, 0.17, isMobile) * (zNear1 / Z1);
+    float halfH1 = mix(0.34, 0.18, isMobile) * (zNear1 / Z1);
     float pitchTilt1 = (mx * 0.08 - my * 0.06) * u;
     float y_proj1 = yTrough1 + vRise1 + v * halfH1 + pitchTilt1;
 
