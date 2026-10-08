@@ -1,4 +1,24 @@
+import { PerspectiveHero } from './src/gl/PerspectiveHero.js';
+import { PerspectiveButton } from './src/gl/PerspectiveButton.js';
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Initialize Perspective 3D WebGL Hero & Buttons ---
+    const heroContainer = document.querySelector('.perspective-hero-wrapper');
+    if (heroContainer) {
+        const heroButtons = [];
+        document.querySelectorAll('.perspective-btn').forEach(btn => {
+            heroButtons.push(new PerspectiveButton(btn));
+        });
+
+        new PerspectiveHero(heroContainer, {
+            onStateChange: (isState1) => {
+                heroButtons.forEach(btn => btn.setTheme(isState1));
+            }
+        });
+    }
+
+
 
     // --- Custom Emoji Cursor ---
     const cursorEl = document.createElement('div');
@@ -115,6 +135,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-links li');
 
     window.addEventListener('scroll', () => {
+        // Toggle navbar visibility when scrolled past full-screen hero
+        if (navbar) {
+            if (window.scrollY > window.innerHeight * 0.65) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        }
+
         // Active Link Highlighting on Scroll
         let currentSectionId = '';
         sections.forEach(section => {

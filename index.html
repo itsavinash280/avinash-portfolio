@@ -31,39 +31,57 @@
     </nav>
 
     <main class="sketchbook-main">
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="journal-cover reveal">
-                    <div class="cover-border">
-                        <div class="cover-topline">
-                            <span>A Photo Journal</span>
-                            <span>·</span>
-                            <span>Issue No. 01</span>
-                            <span>·</span>
-                            <span>2026</span>
-                        </div>
-                        <div class="cover-body">
-                            <h1>Avinash <span>&amp;</span> frames.</h1>
-                            <p class="cover-subtitle">Events, faces, stage light, and small honest moments.</p>
-                        </div>
-                        <div class="cover-footer">
-                            <span>Lucknow · India</span>
-                            <span>iPhone 15 · Photo stories</span>
-                            <a href="#about">Press open →</a>
-                        </div>
-                    </div>
+        <!-- PERSPECTIVE 3D WEBGL HERO LANDING -->
+        <section id="home" class="perspective-hero-wrapper state-avinash">
+            <!-- Perspective Header Navigation -->
+            <header class="perspective-header">
+                <div>
+                    <a href="#home" class="perspective-btn" data-text="AVINASH" aria-label="Avinash Home"></a>
                 </div>
-                <div class="cover-actions reveal" style="transition-delay: 0.15s;">
-                    <a href="#about" class="tape-link">open the book ↗</a>
-                    <span class="pen-mark">✎</span>
-                </div>
+                <nav class="perspective-nav" aria-label="Perspective Navigation">
+                    <a href="#about" class="perspective-btn" data-text="ABOUT"></a>
+                    <a href="#work" class="perspective-btn" data-text="WORK"></a>
+                    <a href="#portfolio" class="perspective-btn" data-text="FRAMES"></a>
+                    <a href="#contact" class="perspective-btn" data-text="CONTACT"></a>
+                </nav>
+            </header>
+
+            <!-- Center 3D WebGL Canvas is injected here by PerspectiveHero -->
+
+            <!-- Subtitle under 3D typography (hidden when warped/hovered) -->
+            <div class="perspective-subtitle">
+                <p>
+                    (DON'T JUST LOOK.)<br>
+                    MOVE AROUND. SOMETHING MIGHT HAPPEN.<br>
+                    A PHOTO JOURNAL FROM LUCKNOW.<br>
+                    TECH COMMUNITIES, STAGE LIGHT, AND HONEST MOMENTS.
+                </p>
             </div>
+
+            <!-- Bottom Information Strip & Scroll Trigger -->
+            <footer class="perspective-bottom">
+                <div class="perspective-bottom-left">
+                    <span>A Photo Journal</span>
+                    <span>·</span>
+                    <span>Issue No. 01</span>
+                    <span>·</span>
+                    <span>2026</span>
+                </div>
+                <div class="perspective-bottom-center">
+                    <a href="#about" class="perspective-open-link">open sketchbook ↓</a>
+                </div>
+                <div class="perspective-bottom-right">
+                    <span>Lucknow · India</span>
+                    <span>·</span>
+                    <span>iPhone 15</span>
+                </div>
+            </footer>
         </section>
 
         <section id="about" class="section">
             <div class="container">
                 <div class="page-rule reveal">
-                    <span>§ 01 · Pages 2-3</span>
+                    <span>01 · Pages 2-3</span>
                     <span>behind the camera</span>
                 </div>
                 <div class="about-grid">
@@ -100,7 +118,7 @@
         <section id="work" class="section">
             <div class="container">
                 <div class="page-rule reveal">
-                    <span>§ 02 · Pages 4-5</span>
+                    <span>02 · Pages 4-5</span>
                     <span>coverage notes</span>
                 </div>
                 <h2 class="heading-md reveal">Work <em>style.</em></h2>
@@ -124,7 +142,7 @@
         <section id="portfolio" class="section portfolio-section">
             <div class="container">
                 <div class="page-rule reveal">
-                    <span>§ 03 · Pages 6-7</span>
+                    <span>03 · Pages 6-7</span>
                     <span>click a frame to open</span>
                 </div>
                 <h2 class="heading-md reveal">Selected <em>frames.</em></h2>
@@ -245,7 +263,7 @@
         <section id="contact" class="cta-section">
             <div class="container reveal">
                 <div class="page-rule">
-                    <span>§ 04 · Last page</span>
+                    <span>04 · Last page</span>
                     <span>say hello</span>
                 </div>
                 <div class="contact-grid">
